@@ -27,10 +27,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       if (data.success) {
         setIsAuthenticated(true);
       } else {
-        router.push('/admin');
+        router.replace('/admin/login');
       }
     } catch (err) {
-      router.push('/admin');
+      router.replace('/admin/login');
     } finally {
       setLoading(false);
     }
@@ -39,7 +39,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const handleLogout = async () => {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
-      router.push('/admin');
+      router.replace('/admin/login');
     } catch (err) {
       console.error('Logout error:', err);
     }
